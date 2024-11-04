@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Text.Json.Serialization;
 public class User
 {
     public string UserId { get; set; }
@@ -15,8 +15,11 @@ public class Product
     public float Price { get; set; }
     public float? Rating { get; set; }
     public int StockQuantity { get; set; }
-    public ICollection<Sale> Sales { get; set; }
-    public ICollection<Purchase> Purchases { get; set; }
+    // Make navigation properties virtual and nullable
+    [JsonIgnore]
+    public virtual ICollection<Sale>? Sales { get; set; }
+    [JsonIgnore]
+    public virtual ICollection<Purchase>? Purchases { get; set; }
 }
 
 public class Sale
